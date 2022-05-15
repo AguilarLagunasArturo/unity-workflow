@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Movement : MonoBehaviour
+public class ControlMix : MonoBehaviour
 {
-    private float delta = 0.1f;
+    private float delta = 0.2f;
     private bool look = true;
 
     private void Flip(){
@@ -26,6 +26,9 @@ public class Movement : MonoBehaviour
     {
         float oldX = gameObject.transform.position.x;
         bool oldLook = look;
+
+        // Gravity
+        gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, 100.0f * Time.deltaTime));
 
         // Right
         if (Input.GetKey(KeyCode.RightArrow)){

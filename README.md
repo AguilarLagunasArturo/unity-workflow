@@ -1,5 +1,17 @@
 # Unity files
 
+## Unity Doc
+
+### Physics Settings
+- Rigit Body 2D
+    - Body Type: Dynamic / Static
+    - Collision Detection: Continue
+- Box Collider 2D
+
+### 
+
+### 
+
 ## Comandos para git
 
 ```bash
