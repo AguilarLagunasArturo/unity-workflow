@@ -10,7 +10,8 @@
     - [ ] Points
 - **Camera**
     - [X] Follow Player
-- **Obstacle**
+- **Obstacle / Enemy**
+    - [ ] Move
     - [ ] Health
     - [ ] Damage
 - **World**
