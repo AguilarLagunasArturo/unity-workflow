@@ -1,73 +1,72 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
+using UnityEngine;
 public class ControlReal : MonoBehaviour
 {
-    private float deltaX = 10f;
-    private float deltaY = 100f;
-    private bool look = true;
-    private float oldX = 0f;
+    // Objs
     private AudioSource audioData;
 
+    // Vars
+    private float stdForceX = 500f;     // force in x axis
+    private float stdForceY = 100f;     // Force in y axis
+    private bool stdDirection = true;   // Is looking to the right
+    private bool jumping = false;       // Is jumping
+
+    // Mirror image
     private void Flip(){
         gameObject.transform.localScale = new Vector3(
             gameObject.transform.localScale.x * -1,
             gameObject.transform.localScale.y,
             gameObject.transform.localScale.z
         );
+        stdDirection = !stdDirection;
     }
 
     // Start is called before the first frame update
     void Start()
     {
         gameObject.transform.position = new Vector3(0f, 0f, 0f);
-        oldX = gameObject.transform.position.x;
         audioData = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        bool oldLook = look;
-
-        // Debug.Log("Old x: " + oldX);
-
         // Gravity
-        gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, deltaY * Time.deltaTime));
+        gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, -stdForceY * Time.deltaTime));
 
         // Right
         if (Input.GetKey(KeyCode.RightArrow)){
-            audioData.Play(0);
-            oldX = gameObject.transform.position.x;
-            gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(deltaX, 0f));
+            if (!stdDirection)
+                Flip();
+            gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(stdForceX * Time.deltaTime, 0f));
         }
         // Left
         if (Input.GetKey(KeyCode.LeftArrow)){
+            if (stdDirection)
+                Flip();
+            gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(-stdForceX * Time.deltaTime, 0f));
+        }
+        // Space
+        if (Input.GetKey(KeyCode.Space) && !jumping){
+            Debug.Log("Jump");
+            jumping = true;
             audioData.Play(0);
-            oldX = gameObject.transform.position.x;
-            gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(-deltaX, 0f));
+            gameObject.GetComponent<Rigidbody2D>().AddForce(
+                new Vector2(0f, (stdForceY * (1f + 80f)) * Time.deltaTime));
         }
 
-        /*
-        // Up
-        if (Input.GetKey(KeyCode.UpArrow)){
-            gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, 100.0f * Time.deltaTime));
-        }
-        // Down
-        if (Input.GetKey(KeyCode.DownArrow)){
-            gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, 100.0f * Time.deltaTime));
-        }
-        */
-
-        Debug.Log("Diff: " + (gameObject.transform.position.x - oldX));
-
-        if (gameObject.transform.position.x - oldX > 0)
-            look = true;
-        else if (gameObject.transform.position.x - oldX < 0)
-            look = false;
-
-        if (look != oldLook)
-            Flip();
+        // Print position
+        /*Debug.Log(String.Format("Pos: <{0}, {1}, {2}>",
+            gameObject.transform.position.x,
+            gameObject.transform.position.y,
+            gameObject.transform.position.z
+        ));*/
+    }
+    private void OnCollisionEnter2D(Collision2D collision){
+        if (collision.transform.tag == "Solid")
+            jumping = false;
     }
 }
