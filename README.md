@@ -1,6 +1,6 @@
 # Trying out Unity
-- *Unity Hub*: 3.4.1
-- *Editor*: 2021.3.16f1 LTS
+- **Unity Hub**: 3.4.1
+- **Editor**: 2021.3.16f1 LTS
 
 ## Setup for new Unity projects
 Run `wget https://raw.githubusercontent.com/github/gitignore/main/Unity.gitignore -O .gitignore` at the root of the Unity project directory to ignore auto-generated files.
