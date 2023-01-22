@@ -25,7 +25,7 @@ Run `wget https://raw.githubusercontent.com/github/gitignore/main/Unity.gitignor
     - [ ] Menu
 
 ## Cheat-Sheet
-### miscellaneous
+### Miscellaneous
 - Prefab:
     - Drag and Drop and Object to create a File linked to all its instaces.
 - [KeyCodes](https://docs.unity3d.com/2022.2/Documentation/ScriptReference/KeyCode.html)
