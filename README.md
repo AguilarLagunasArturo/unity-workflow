@@ -1,4 +1,7 @@
-# Unity 2022
+# Unity Hub 3.4.1 Editor 2021.3.16f1 LTS
+
+## Setup for new Unity projects
+Run `wget https://raw.githubusercontent.com/github/gitignore/main/Unity.gitignore -O .gitignore` at the root of the Unity project directory to ignore auto-generated files.
 
 ## TODO-LIST
 - **Player**
@@ -20,11 +23,12 @@
     - [ ] Menu
 
 ## Cheat-Sheet
+### miscellaneous
 - Prefab:
     - Drag and Drop and Object to create a File linked to all its instaces.
 - [KeyCodes](https://docs.unity3d.com/2022.2/Documentation/ScriptReference/KeyCode.html)
 
-## Physics Settings
+### Physics Settings
 - [Rigit Body 2D](https://docs.unity3d.com/2022.2/Documentation/ScriptReference/KeyCode.html)
     - Body Type: Dynamic / Static
     - Collision Detection: Continue
@@ -32,22 +36,22 @@
     - Is Trgger: Does not collide
 - [Max Speed Atricle](https://forum.unity.com/threads/add-force-with-limits.631552/)
 
-## Audio Settings
+### Audio Settings
 - Audio Source
     - Play on Awake
 
 ## Git commands
 
 ```bash
-# Clonar proyecto
+# Clone project
 git clone <url> <carpeta>
 
-# Agregar todos cambios
+# Add all chamges
 git add .
 
-# Guardar cambios (local)
+# Stage changes to commit
 git commit -m "mensaje"
 
-# Guardar cambios en sitio web
+# Save changes in main branch
 git push origin main
 ```
